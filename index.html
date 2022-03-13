@@ -71,86 +71,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-SQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/10/SQL/" class="article-date">
-  <time class="dt-published" datetime="2022-03-10T03:40:21.000Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/10/SQL/">SQL</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="第九章-实用建模技术"><a href="#第九章-实用建模技术" class="headerlink" title="第九章 实用建模技术"></a>第九章 实用建模技术</h2><h3 id="9-1-过程连续赋值"><a href="#9-1-过程连续赋值" class="headerlink" title="9.1 过程连续赋值"></a>9.1 过程连续赋值</h3><p><strong>过程赋值</strong>将值赋给寄存器，值一直保存在寄存器中，直到另一个值存放在该寄存器中。</p>
-<p><strong>过程连续赋值</strong>行为是不同的，它们是这样的过程语句：允许在有限的时间内将表达式的值连续地加到寄存器或线网。</p>
-<h4 id="9-1-1-assign和deassign"><a href="#9-1-1-assign和deassign" class="headerlink" title="9.1.1 assign和deassign"></a>9.1.1 <code>assign</code>和<code>deassign</code></h4><p>关键词<code>assign</code>和<code>deassign</code>用来表示第一类过程连续赋值语句。这类语句的左边只能是一个<strong>寄存器</strong>或一个<strong>拼接的寄存器组</strong>。</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> edge_dff(<span class="keyword">output</span> <span class="keyword">reg</span> q,qbar</span><br><span class="line">                <span class="keyword">input</span> d,clk,reset);</span><br><span class="line">    <span class="keyword">always</span>@(<span class="keyword">negedge</span> clk)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            q=d;</span><br><span class="line">            qbar=~d;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">always</span>@(reset)</span><br><span class="line">        <span class="keyword">if</span>(reset)</span><br><span class="line">            <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">assign</span> q=<span class="number">1&#x27;b0</span>;</span><br><span class="line">                <span class="keyword">assign</span> qbar=<span class="number">1&#x27;b1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">    	<span class="keyword">else</span><span class="comment">//如果reset跳变为低电平，通过deassign语句取消对q和qbar的覆盖，</span></span><br><span class="line">            <span class="comment">//使得它们可以在下一个时钟沿改变寄存器的值</span></span><br><span class="line">        	<span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">deassign</span> q;</span><br><span class="line">                <span class="keyword">deassign</span> qbar;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<p>这里我们需要了解一些<code>Verilog</code>语言的特性。<code>assign</code>不是一个简单的赋值命令，而是一个相当于拿导线把两个东西连接起来。</p>
-<h4 id="9-1-2-force和release语句"><a href="#9-1-2-force和release语句" class="headerlink" title="9.1.2 force和release语句"></a>9.1.2 <code>force</code>和<code>release</code>语句</h4><p><code>force</code>和<code>release</code>语句用来表示过程连续赋值语句的第二种形式。它们<strong>既可以用来改写寄存器上的赋值又可以改写线网上的赋值</strong>。</p>
-<p>建议不要在模块中使用这些语句，只建议在激励块中使用。</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> stimulus;</span><br><span class="line">    edge_dff dff(Q,Qbar,D,CLK,RESET);</span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            #<span class="number">50</span> <span class="keyword">force</span> dff<span class="variable">.q</span>=<span class="number">1&#x27;b1</span>;</span><br><span class="line">            #<span class="number">50</span> <span class="keyword">release</span> dff<span class="variable">.q</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="9-2-改写参数"><a href="#9-2-改写参数" class="headerlink" title="9.2 改写参数"></a>9.2 改写参数</h3><p>我们都知道<code>parameter</code>可以定义参数，但如果我们需要改变参数，则需要通过以下两种方法：</p>
-<ul>
-<li><code>defparam</code>语句</li>
-<li>模块调用参数值</li>
-</ul>
-<h4 id="9-2-1-defparam语句"><a href="#9-2-1-defparam语句" class="headerlink" title="9.2.1 defparam语句"></a>9.2.1 <code>defparam</code>语句</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> hello_world;</span><br><span class="line">    <span class="keyword">parameter</span> id_num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">&quot;Hello world!The id number=%d.&quot;</span>,id_num);</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"><span class="keyword">module</span> top;</span><br><span class="line">    <span class="keyword">defparam</span> w1<span class="variable">.id_num</span>=<span class="number">1</span>,w2<span class="variable">.id_num</span>=<span class="number">2</span>;</span><br><span class="line">    hello_world w1();</span><br><span class="line">    hello_world w2();</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<p>虽然直观上觉得这行代码有错，但也没办法……<br>还是使用ANSI C风格比较好：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> hello_world #(<span class="keyword">parameter</span> id_num=<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">&quot;Hello world!The id number=%d.&quot;</span>,id_num);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="9-2-2-模块实例的参数值"><a href="#9-2-2-模块实例的参数值" class="headerlink" title="9.2.2 模块实例的参数值"></a>9.2.2 模块实例的参数值</h4><p>在调用模块的时候可以改写其原来定义的参数值。</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> top;</span><br><span class="line">    hello_world <span class="variable">#(1)</span> w1;</span><br><span class="line">    hello_world <span class="variable">#(.id_num(2))</span> w2;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<p>这样做的效果和使用<code>defparam</code>的效果是一样的。但更简单一些，这里使用的是<code>#(&lt;value&gt;)</code>的语法改变参数，需要好好学习。当然，如果有多个参数，既可以按照顺序传参，也可以按照名字传参。</p>
-<h3 id="9-3-条件编译和执行"><a href="#9-3-条件编译和执行" class="headerlink" title="9.3 条件编译和执行"></a>9.3 条件编译和执行</h3><p><code>Verilog</code>的一部分代码有可能适用于某个编译环境，但不适用于另一个环境。这个时候就需要使用<strong>条件编译</strong>，使某些代码在满足了某些条件以后才会被编译。</p>
-<p>同时也有的代码希望是有条件允许的，所以要使用<strong>条件执行</strong>。</p>
-<h4 id="9-3-1-条件编译"><a href="#9-3-1-条件编译" class="headerlink" title="9.3.1 条件编译"></a>9.3.1 条件编译</h4><p>例子：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//example 1</span></span><br><span class="line"><span class="meta">`<span class="keyword">ifdef</span> TEST</span></span><br><span class="line"><span class="keyword">module</span> test</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"><span class="meta">`<span class="keyword">else</span></span></span><br><span class="line"><span class="keyword">module</span> stimulus;</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"><span class="meta">`<span class="keyword">endif</span></span></span><br><span class="line"><span class="comment">//example 2</span></span><br><span class="line"><span class="keyword">module</span> top;</span><br><span class="line">    bus_master b1();</span><br><span class="line">    <span class="meta">`<span class="keyword">ifdef</span> ADD_B2</span><span class="comment">//如果定义了ADD_B2，则调用实例b2</span></span><br><span class="line">    bus_master b2();</span><br><span class="line">    <span class="meta">`<span class="keyword">elsif</span> ADD_B3</span></span><br><span class="line">    bus_master b3();</span><br><span class="line">    <span class="meta">`<span class="keyword">else</span></span></span><br><span class="line">    bus_master b4();</span><br><span class="line">    <span class="meta">`<span class="keyword">endif</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">`<span class="keyword">ifndef</span> IGNORE_B5</span><span class="comment">//如果没有定义IGNORE_B5，则调用实例b5</span></span><br><span class="line">    bus_master b5();</span><br><span class="line">    <span class="meta">`<span class="keyword">endif</span></span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<p>条件编译的标志可以用宏定义来设置：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">define</span> TEST 1</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="9-3-2-条件执行"><a href="#9-3-2-条件执行" class="headerlink" title="9.3.2 条件执行"></a>9.3.2 条件执行</h4><p>条件执行标志允许设计者在运行时控制语句执行的流程。系统关键词<code>$test$plusargs</code>用于条件执行。</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> test;</span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            <span class="keyword">if</span>($test$plusargs(<span class="string">&quot;DISPLAY_VAR&quot;</span>))<span class="comment">//仅当设置了DISPLAY_VAR时才显示变量</span></span><br><span class="line">                <span class="built_in">$display</span>(<span class="string">&quot;Display=%b&quot;</span>,&#123;a,b,c&#125;);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">$display</span>(<span class="string">&quot;No Display&quot;</span>);</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<p>我们也可以使用<code>$value$plusargs</code>来进一步控制条件执行。该系统任务用于测试调用选项的参数值。如果没有匹配的调用选项，那么它将返回非0值。</p>
-<h3 id="9-4-时间尺度"><a href="#9-4-时间尺度" class="headerlink" title="9.4 时间尺度"></a>9.4 时间尺度</h3><p>通常，在某些仿真中，一个模块中的延迟值需要用某个时间单位来定义。我们可以自己指定时间单位。</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 100ns/1ns</span><span class="comment">//参考时间单位为100ns，精度为1ns</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="9-5-常用的系统任务"><a href="#9-5-常用的系统任务" class="headerlink" title="9.5 常用的系统任务"></a>9.5 常用的系统任务</h3><p>（不做记录，看书就好）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/10/SQL/" data-id="cl0kg1uio00008gvj63cp9qob" data-title="SQL" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/10/hello-world/" class="article-date">
@@ -212,23 +132,9 @@
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
-    </div>
-  </div>
-
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/test/" style="font-size: 10px;">test</a>
-    </div>
-  </div>
-
   
     
   <div class="widget-wrap">
@@ -245,10 +151,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2022/03/10/SQL/">SQL</a>
-          </li>
         
           <li>
             <a href="/2022/03/10/hello-world/">Hello World</a>
