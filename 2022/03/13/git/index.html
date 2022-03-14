@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>git | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Git for New BeginnersPrefaceThis tutorial will be updated for a long time, mainly for me, an EE student who does not really contact those practical tools. This tutorial consists of following points:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git">
+<meta property="og:url" content="http://example.com/2022/03/13/git/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Git for New BeginnersPrefaceThis tutorial will be updated for a long time, mainly for me, an EE student who does not really contact those practical tools. This tutorial consists of following points:">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/LVCS.png">
+<meta property="og:image" content="http://example.com/images/CVCS.png">
+<meta property="og:image" content="http://example.com/images/DVCS.png">
+<meta property="article:published_time" content="2022-03-13T11:22:49.000Z">
+<meta property="article:modified_time" content="2022-03-13T12:44:09.220Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="version control; git; distributed system">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/LVCS.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-git" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/13/git/" class="article-date">
+  <time class="dt-published" datetime="2022-03-13T11:22:49.000Z" itemprop="datePublished">2022-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      git
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Git-for-New-Beginners"><a href="#Git-for-New-Beginners" class="headerlink" title="Git for New Beginners"></a>Git for New Beginners</h1><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This tutorial will be updated for a long time, mainly for me, an EE student who does not really contact those practical tools.</p>
+<p>This tutorial consists of following points:</p>
+<ul>
+<li>VCS and Git Started: Here I will introduce the concept of version control systems ( VCSs ) in short. The key point is the introduction to Git, our main player. You can learn some fundamental concepts and a little simple properties.</li>
+<li>Git Basics: This is one of the most important chapters in this tutorial. In fact, some basic commands are taught here. After studying, you can learn about linear version control of git, the fundamental function.</li>
+<li>Git Branching: According to some programmers, this is “killer feature”, which enables you control the versions flexibly in a non linear ways. Here what I want to highlight is that this property is against many one’s original perspectives towards version control. Remember to draw while learning.</li>
+<li>….(I have not read)</li>
+</ul>
+<h2 id="VCS-and-Git-Started"><a href="#VCS-and-Git-Started" class="headerlink" title="VCS and Git Started"></a>VCS and Git Started</h2><h3 id="1-About-Version-Control"><a href="#1-About-Version-Control" class="headerlink" title="1 .  About Version Control"></a>1 .  About Version Control</h3><p>During the period when we develop our project, there are some stages. For example, in the first stage of a simple database application systems, we may design the database managing data and the UI to interact in the second stage. </p>
+<p>As a matter of fact, they are what we called “big version”, which means there are large updates. However, the concept of version is not so narrow but means <strong>changes to a files or set of files over time</strong>, which VCSs( version control systems) record. </p>
+<p>The user can roll back to the recorded previous versions. For example, a web page designer who have designed several layouts for a website can use this function to go back to past designs if they like. </p>
+<h3 id="2-Distributed-Version-Control-System"><a href="#2-Distributed-Version-Control-System" class="headerlink" title="2. Distributed Version Control System"></a>2. Distributed Version Control System</h3><p>There are many VCSs in history used by programmers to assist their tasks. The earliest VCS is Local Version Control System(LCVS). Developer control versions in a crude but simple way, copying files into another directory or a database. Just like :</p>
+<p><img src="/images/LVCS.png" alt="Local Version Control System"></p>
+<p>The cost of this method is high because large storage is needed to place the previous versions. </p>
+<p>So they choose another method called Centralized Version Control System (CVCS).This system have a single sever containing all the versioned file and a lot of clients that check out files from it.</p>
+<p><img src="/images/CVCS.png" alt="CVCS"></p>
+<p>There is one fatal drawback in this form: What happen if the sever crashes? This means we will lose everything we have. So merely in security perspective, CVCS is not suitable.</p>
+<p>Despite neither CVCS nor LVCS are rejected by history, there is one widely applied system: Distributed Version Control System(DVCS). And git is one of DVCSs and the one of the most famous and popular with programmers from all over the world. </p>
+<p>Why DVCS can work well? In DVCS, every clients clone the entire repository and its full history and in this way the whole system can function well even if some severs die.</p>
+<p><img src="/images/DVCS.png" alt="DVCS"></p>
+<p>And in DVCSs, the workflow is very flexible. It allows you to collaborate with others to finish the same project.</p>
+<h3 id="3-What-is-Git"><a href="#3-What-is-Git" class="headerlink" title="3. What is Git?"></a>3. What is Git?</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/13/git/" data-id="cl0q886dd0003bcvj7vdm3rmq" data-title="git" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/14/Operator-Overload-in-C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Operator Overload in C++
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/10/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Pointer-Overload/" rel="tag">C++;Pointer;Overload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Pointer-Overload/" style="font-size: 10px;">C++;Pointer;Overload</a> <a href="/tags/version-control-git-distributed-system/" style="font-size: 10px;">version control; git; distributed system</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/14/Operator-Overload-in-C/">Operator Overload in C++</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/13/git/">git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/10/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

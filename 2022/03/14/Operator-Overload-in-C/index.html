@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>Operator Overload in C++ | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="One Weird ProblemThe ProblemIndeed, it is because I do not figure out the mechanism of C++ class. But this error help me establish a comprehension towards it. The previous code which is recognized by">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Operator Overload in C++">
+<meta property="og:url" content="http://example.com/2022/03/14/Operator-Overload-in-C/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="One Weird ProblemThe ProblemIndeed, it is because I do not figure out the mechanism of C++ class. But this error help me establish a comprehension towards it. The previous code which is recognized by">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-14T00:32:06.000Z">
+<meta property="article:modified_time" content="2022-03-14T01:34:14.963Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++;Pointer;Overload">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -69,9 +74,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Operator-Overload-in-C" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Operator-Overload-in-C" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/14/Operator-Overload-in-C/" class="article-date">
   <time class="dt-published" datetime="2022-03-14T00:32:06.000Z" itemprop="datePublished">2022-03-14</time>
@@ -84,8 +87,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/14/Operator-Overload-in-C/">Operator Overload in C++</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Operator Overload in C++
     </h1>
   
 
@@ -125,123 +128,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-git" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/13/git/" class="article-date">
-  <time class="dt-published" datetime="2022-03-13T11:22:49.000Z" itemprop="datePublished">2022-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/13/git/">git</a>
-    </h1>
+    <a href="/2022/03/13/git/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Git-for-New-Beginners"><a href="#Git-for-New-Beginners" class="headerlink" title="Git for New Beginners"></a>Git for New Beginners</h1><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This tutorial will be updated for a long time, mainly for me, an EE student who does not really contact those practical tools.</p>
-<p>This tutorial consists of following points:</p>
-<ul>
-<li>VCS and Git Started: Here I will introduce the concept of version control systems ( VCSs ) in short. The key point is the introduction to Git, our main player. You can learn some fundamental concepts and a little simple properties.</li>
-<li>Git Basics: This is one of the most important chapters in this tutorial. In fact, some basic commands are taught here. After studying, you can learn about linear version control of git, the fundamental function.</li>
-<li>Git Branching: According to some programmers, this is “killer feature”, which enables you control the versions flexibly in a non linear ways. Here what I want to highlight is that this property is against many one’s original perspectives towards version control. Remember to draw while learning.</li>
-<li>….(I have not read)</li>
-</ul>
-<h2 id="VCS-and-Git-Started"><a href="#VCS-and-Git-Started" class="headerlink" title="VCS and Git Started"></a>VCS and Git Started</h2><h3 id="1-About-Version-Control"><a href="#1-About-Version-Control" class="headerlink" title="1 .  About Version Control"></a>1 .  About Version Control</h3><p>During the period when we develop our project, there are some stages. For example, in the first stage of a simple database application systems, we may design the database managing data and the UI to interact in the second stage. </p>
-<p>As a matter of fact, they are what we called “big version”, which means there are large updates. However, the concept of version is not so narrow but means <strong>changes to a files or set of files over time</strong>, which VCSs( version control systems) record. </p>
-<p>The user can roll back to the recorded previous versions. For example, a web page designer who have designed several layouts for a website can use this function to go back to past designs if they like. </p>
-<h3 id="2-Distributed-Version-Control-System"><a href="#2-Distributed-Version-Control-System" class="headerlink" title="2. Distributed Version Control System"></a>2. Distributed Version Control System</h3><p>There are many VCSs in history used by programmers to assist their tasks. The earliest VCS is Local Version Control System(LCVS). Developer control versions in a crude but simple way, copying files into another directory or a database. Just like :</p>
-<p><img src="/images/LVCS.png" alt="Local Version Control System"></p>
-<p>The cost of this method is high because large storage is needed to place the previous versions. </p>
-<p>So they choose another method called Centralized Version Control System (CVCS).This system have a single sever containing all the versioned file and a lot of clients that check out files from it.</p>
-<p><img src="/images/CVCS.png" alt="CVCS"></p>
-<p>There is one fatal drawback in this form: What happen if the sever crashes? This means we will lose everything we have. So merely in security perspective, CVCS is not suitable.</p>
-<p>Despite neither CVCS nor LVCS are rejected by history, there is one widely applied system: Distributed Version Control System(DVCS). And git is one of DVCSs and the one of the most famous and popular with programmers from all over the world. </p>
-<p>Why DVCS can work well? In DVCS, every clients clone the entire repository and its full history and in this way the whole system can function well even if some severs die.</p>
-<p><img src="/images/DVCS.png" alt="DVCS"></p>
-<p>And in DVCSs, the workflow is very flexible. It allows you to collaborate with others to finish the same project.</p>
-<h3 id="3-What-is-Git"><a href="#3-What-is-Git" class="headerlink" title="3. What is Git?"></a>3. What is Git?</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/13/git/" data-id="cl0q886dd0003bcvj7vdm3rmq" data-title="git" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/10/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-03-10T03:14:06.634Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/10/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/10/hello-world/" data-id="cl0q886da0001bcvj1bnu9zk2" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
