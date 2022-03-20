@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Branching Point | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="How to find the Branching Point?1. Introduction to Branching PointA common problem in Multi-valued Functions is to get the branching points.  What is branching points? If the variables walk on a path">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Branching Point">
+<meta property="og:url" content="http://example.com/2022/03/20/Branching-Point/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="How to find the Branching Point?1. Introduction to Branching PointA common problem in Multi-valued Functions is to get the branching points.  What is branching points? If the variables walk on a path">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-20T08:31:26.000Z">
+<meta property="article:modified_time" content="2022-03-20T09:12:27.131Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Complex Analyze; Branching Point; Multi-valued Functions">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Branching-Point" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/20/Branching-Point/" class="article-date">
+  <time class="dt-published" datetime="2022-03-20T08:31:26.000Z" itemprop="datePublished">2022-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Branching Point
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="How-to-find-the-Branching-Point"><a href="#How-to-find-the-Branching-Point" class="headerlink" title="How to find the Branching Point?"></a>How to find the Branching Point?</h1><h2 id="1-Introduction-to-Branching-Point"><a href="#1-Introduction-to-Branching-Point" class="headerlink" title="1. Introduction to Branching Point"></a>1. Introduction to Branching Point</h2><p>A common problem in Multi-valued Functions is to get the branching points. </p>
+<p>What is branching points? If the variables walk on a path which surrounds single one branching point, the multi-valued function value will change. </p>
+<p>For example, root function:<br>$$<br>\begin{align*}<br>w&#x3D;\sqrt{z-a}<br>\end{align*}<br>$$<br>The multi-valued property comes from $z-a$, especially its phase. </p>
+<p>Let’s consider this circumstance: A close path without surrounding $z&#x3D;a$, then we can see that the phase of $z-a$ remain unchanged here so the value does not change. </p>
+<p>But things are different when the path surrounds some points.</p>
+<p>One of branching points is $a$, because a close path surrounding $z&#x3D;a$ will change $2\pi$ in phase of $\sqrt{z-a}$ so that the result will change $\pi$ in phase. But here we should be careful that if the original phase changes $4\pi$ then the final result will not change indeed as $2\pi$ is phase period. </p>
+<p>What’s more, our friend $\infty$ maybe the branching point. If we take account for a huge circle, then it will surround all points including $z&#x3D;a$, so it is nature that the result will change. </p>
+<p>Then how to find branching point in other more complicated functions like $\sqrt[3]{z-a}$ and $\sqrt{(z-a)(z-b)}$. And is the $\infty$ one of branching points? </p>
+<h2 id="2-Find-and-Verify-the-Branching-Point-in-Root-Function"><a href="#2-Find-and-Verify-the-Branching-Point-in-Root-Function" class="headerlink" title="2. Find and Verify the Branching Point in Root Function"></a>2. Find and Verify the Branching Point in Root Function</h2><p>For finite branching points, our task is to find them while verifying  it in terms of $\infty$. </p>
+<p>In the beginning, just think about one function : $w&#x3D;\sqrt{z}$. </p>
+<p>The branching point is very clear, $z&#x3D;0$. </p>
+<p>In general situation, function $w&#x3D;\sqrt[n]{z}(n&gt;2,n \in Z)$ , the first branching point must be zero.</p>
+<p>Develop further, we can say that single roots of $p(z)&#x3D;0(w&#x3D;\sqrt[n]{p(z)})$ belong to branching points</p>
+<blockquote>
+<p>Method 1(Find or Solve the Equation): Single roots are all branching points.</p>
+</blockquote>
+<p>In this way, all finite branching points can be known. </p>
+<p>So how to verify whether $\infty$ is branching point or not? We can draw a close curve, maybe not so small, to surround all finite branching points, and then let variable $z$ walk on this curve. In the end we will find that the phase change largely, not just $2\pi$ but $Number(\text{finite branching points})\times 2 \pi$. Then we recalculate the final phase changing to see whether it is multiple of $2\pi$.</p>
+<blockquote>
+<p>Method 2(Verify the Quality of $\infty$): Surround all finite branching points and calculate the total results.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/20/Branching-Point/" data-id="cl0z29bcm000098vj5kn47cz9" data-title="Branching Point" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" rel="tag">Complex Analyze; Branching Point; Multi-valued Functions</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/14/Operator-Overload-in-C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Operator Overload in C++</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Pointer-Overload/" rel="tag">C++;Pointer;Overload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" rel="tag">Complex Analyze; Branching Point; Multi-valued Functions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-Pointer-Overload/" style="font-size: 10px;">C++;Pointer;Overload</a> <a href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" style="font-size: 10px;">Complex Analyze; Branching Point; Multi-valued Functions</a> <a href="/tags/version-control-git-distributed-system/" style="font-size: 10px;">version control; git; distributed system</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/20/Branching-Point/">Branching Point</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/14/Operator-Overload-in-C/">Operator Overload in C++</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/13/git/">git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/10/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

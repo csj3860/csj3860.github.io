@@ -71,6 +71,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Branching-Point" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/20/Branching-Point/" class="article-date">
+  <time class="dt-published" datetime="2022-03-20T08:31:26.000Z" itemprop="datePublished">2022-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/20/Branching-Point/">Branching Point</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="How-to-find-the-Branching-Point"><a href="#How-to-find-the-Branching-Point" class="headerlink" title="How to find the Branching Point?"></a>How to find the Branching Point?</h1><h2 id="1-Introduction-to-Branching-Point"><a href="#1-Introduction-to-Branching-Point" class="headerlink" title="1. Introduction to Branching Point"></a>1. Introduction to Branching Point</h2><p>A common problem in Multi-valued Functions is to get the branching points. </p>
+<p>What is branching points? If the variables walk on a path which surrounds single one branching point, the multi-valued function value will change. </p>
+<p>For example, root function:<br>$$<br>\begin{align*}<br>w&#x3D;\sqrt{z-a}<br>\end{align*}<br>$$<br>The multi-valued property comes from $z-a$, especially its phase. </p>
+<p>Let’s consider this circumstance: A close path without surrounding $z&#x3D;a$, then we can see that the phase of $z-a$ remain unchanged here so the value does not change. </p>
+<p>But things are different when the path surrounds some points.</p>
+<p>One of branching points is $a$, because a close path surrounding $z&#x3D;a$ will change $2\pi$ in phase of $\sqrt{z-a}$ so that the result will change $\pi$ in phase. But here we should be careful that if the original phase changes $4\pi$ then the final result will not change indeed as $2\pi$ is phase period. </p>
+<p>What’s more, our friend $\infty$ maybe the branching point. If we take account for a huge circle, then it will surround all points including $z&#x3D;a$, so it is nature that the result will change. </p>
+<p>Then how to find branching point in other more complicated functions like $\sqrt[3]{z-a}$ and $\sqrt{(z-a)(z-b)}$. And is the $\infty$ one of branching points? </p>
+<h2 id="2-Find-and-Verify-the-Branching-Point-in-Root-Function"><a href="#2-Find-and-Verify-the-Branching-Point-in-Root-Function" class="headerlink" title="2. Find and Verify the Branching Point in Root Function"></a>2. Find and Verify the Branching Point in Root Function</h2><p>For finite branching points, our task is to find them while verifying  it in terms of $\infty$. </p>
+<p>In the beginning, just think about one function : $w&#x3D;\sqrt{z}$. </p>
+<p>The branching point is very clear, $z&#x3D;0$. </p>
+<p>In general situation, function $w&#x3D;\sqrt[n]{z}(n&gt;2,n \in Z)$ , the first branching point must be zero.</p>
+<p>Develop further, we can say that single roots of $p(z)&#x3D;0(w&#x3D;\sqrt[n]{p(z)})$ belong to branching points</p>
+<blockquote>
+<p>Method 1(Find or Solve the Equation): Single roots are all branching points.</p>
+</blockquote>
+<p>In this way, all finite branching points can be known. </p>
+<p>So how to verify whether $\infty$ is branching point or not? We can draw a close curve, maybe not so small, to surround all finite branching points, and then let variable $z$ walk on this curve. In the end we will find that the phase change largely, not just $2\pi$ but $Number(\text{finite branching points})\times 2 \pi$. Then we recalculate the final phase changing to see whether it is multiple of $2\pi$.</p>
+<blockquote>
+<p>Method 2(Verify the Quality of $\infty$): Surround all finite branching points and calculate the total results.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/20/Branching-Point/" data-id="cl0z29bcm000098vj5kn47cz9" data-title="Branching Point" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" rel="tag">Complex Analyze; Branching Point; Multi-valued Functions</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Operator-Overload-in-C" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/14/Operator-Overload-in-C/" class="article-date">
@@ -320,7 +381,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Pointer-Overload/" rel="tag">C++;Pointer;Overload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Pointer-Overload/" rel="tag">C++;Pointer;Overload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" rel="tag">Complex Analyze; Branching Point; Multi-valued Functions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
     </div>
   </div>
 
@@ -330,7 +391,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-Pointer-Overload/" style="font-size: 10px;">C++;Pointer;Overload</a> <a href="/tags/version-control-git-distributed-system/" style="font-size: 10px;">version control; git; distributed system</a>
+      <a href="/tags/C-Pointer-Overload/" style="font-size: 10px;">C++;Pointer;Overload</a> <a href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" style="font-size: 10px;">Complex Analyze; Branching Point; Multi-valued Functions</a> <a href="/tags/version-control-git-distributed-system/" style="font-size: 10px;">version control; git; distributed system</a>
     </div>
   </div>
 
@@ -350,6 +411,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/03/20/Branching-Point/">Branching Point</a>
+          </li>
         
           <li>
             <a href="/2022/03/14/Operator-Overload-in-C/">Operator Overload in C++</a>
