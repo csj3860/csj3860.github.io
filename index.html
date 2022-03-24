@@ -71,6 +71,214 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/23/Shell/" class="article-date">
+  <time class="dt-published" datetime="2022-03-23T11:29:00.000Z" itemprop="datePublished">2022-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/23/Shell/">Shell</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="Shell-and-Shell-Script"><a href="#Shell-and-Shell-Script" class="headerlink" title="Shell and Shell Script"></a>Shell and Shell Script</h1><p>In this article, we talk about one type of shell, <strong>Bash</strong> and then we learn how to write shell script.</p>
+<h2 id="1-What-is-Shell"><a href="#1-What-is-Shell" class="headerlink" title="1. What is Shell?"></a>1. What is Shell?</h2><p>The first things is that we need to figure out the definition of shell. </p>
+<p>If we want to open a music app, what happen? The input and output like the following workflow:</p>
+<p><img src="/ShellKernalHardware.png" alt="The relation"></p>
+<p>Indeed, shell is one of the users’ accesss to the kernel, programmer using it to interact.</p>
+<h2 id="2-Why-we-learn-shell"><a href="#2-Why-we-learn-shell" class="headerlink" title="2. Why we learn shell?"></a>2. Why we learn shell?</h2><p>There are mainly three advantages:</p>
+<ul>
+<li><strong>Shell commands are general.</strong> In fact, regardless of different OS versions or different Linux releases, the shell commands are similar. So we can easily use nearly every Linux computer if we master the shell commands.</li>
+<li><strong>Prompt is fast in remote interaction.</strong> Sometimes we need to interact with a remote machine. Under this circumstance, typing a single line of commands to deliver is obviously faster than GUI, which usually require a complicated local process and then the message will be passed. </li>
+<li><strong>Learn more about Linux and work efficiently.</strong>  We cannot master our linux machine unless we know the shell commands. In addition, we can use the command to complete some tough tasks in manual manipulation.</li>
+</ul>
+<h2 id="3-What-is-Bash"><a href="#3-What-is-Bash" class="headerlink" title="3. What is Bash?"></a>3. What is Bash?</h2><p>Bash is the default shell in linux. </p>
+<p>The functions(Advantages):</p>
+<ul>
+<li><strong>History</strong>: It is fairly convenient use the [UP] and [DOWN] to search for history commands. The commands we input will be stored in <code>.bash_history</code>. And they will be deleted when we log out. </li>
+<li><strong>Complementation</strong>: Just type [TAB] then bash will hep me complement our input. It is a good habit to use this function as it will not only help us save the time, but also improve our accuracy. Besides, typeing two times can display all possible results, it is intereasting.</li>
+<li><strong>Alias</strong>: If we want to change some commands’ name, we can use <code>alias</code>. For example, let’s set a switching path command’s name:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> retBack=<span class="string">&#x27;cd /mnt/c/Users/Username&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>If we want it to function forever, we can modify the system files <code>.bashrc</code>. It is in home directory and use command <code>cd $HOME</code> to see the directoy.</p>
+<h2 id="4-Variables-in-Bash"><a href="#4-Variables-in-Bash" class="headerlink" title="4. Variables in Bash"></a>4. Variables in Bash</h2><p>Like many programming languages, variables are very important and ease our working burdens. </p>
+<p>Just take <code>$HOME</code> as an example, to print the contents, we can use <code>echo</code>:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$HOME</span></span><br></pre></td></tr></table></figure>
+
+<p>Please pay attention to the dollar symbol.</p>
+<p>Then to define or modify a variable, just use <code>=</code>:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myname=V87 <span class="comment">#define the string value without space</span></span><br><span class="line">value1=1 <span class="comment">#define numerical value</span></span><br><span class="line">workPath=<span class="string">&quot;<span class="variable">$Home</span>/test hello.c&quot;</span> <span class="comment">#define the string with space and partical characters work  </span></span><br><span class="line">fullname=<span class="string">&#x27;Bill Gates&#x27;</span> <span class="comment">#define the raw string</span></span><br></pre></td></tr></table></figure>
+
+<p>Here single quotations differ a lot from double quotation, so be careful.</p>
+<p>If we want to undo our defination, use <code>unset</code>:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> fullname</span><br></pre></td></tr></table></figure>
+
+<p>Now let’s summary the basic manipulation of variables:</p>
+<ul>
+<li>Print the variables: <code>echo $VarName</code></li>
+<li>Define or Modify the variables:<code>VarName=&lt;contents&gt;</code></li>
+<li>Cancel the defination:<code>unset VarName</code></li>
+</ul>
+<p>Here, if we use command <code>bash</code> to create a subprocess, then the variables defined in parent process will not work. If we want them to work, we can use <code>export</code> change the variables into environment variables:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> fullname</span><br></pre></td></tr></table></figure>
+
+<p>And the reverse process can be done:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> fullname</span><br></pre></td></tr></table></figure>
+
+<p>Environment variables play an important role in linux. Referring to the document can acquire more information.</p>
+<p>For example, the text code schema may differ from windows, so some file dropped into linux may generate some failure. But using the correct decode methods can help us skim the file rightly.</p>
+<p>To check out the supporting code schema, see environment variables <code>locale</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locale</span><br></pre></td></tr></table></figure>
+
+<p>There are many manipulation that we can learn from the books. So here we just record those key parts and simple manipulation.</p>
+<h2 id="5-Bash-Shell-Operation-Environment"><a href="#5-Bash-Shell-Operation-Environment" class="headerlink" title="5. Bash Shell Operation Environment"></a>5. Bash Shell Operation Environment</h2><h3 id="How-Bash-find-the-command"><a href="#How-Bash-find-the-command" class="headerlink" title="How Bash find the command?"></a>How Bash find the command?</h3><p>There are quite a lot commands in Linux but how can bash find them? As a matter of fact, the sequence is:</p>
+<ul>
+<li>Path searching. Like <code>/bin/ls</code> or <code>./ls</code></li>
+<li>Alias searching. It is the way that our alias commands run.</li>
+<li>Builtin command. </li>
+<li>Environment Variable<code>$PATH</code>.</li>
+</ul>
+<p>There are only four ways to execute the commands. </p>
+<p>For example, our creating executive file usually runs in the first way. </p>
+<p>The most familiar commands like <code>mkdir</code> , <code>cd</code> and so on are searched in the third way. </p>
+<p>Moreover, our downloaded commands like <code>gcc</code>, <code>python</code> are executed in the forth way and this is why <code>$PATH</code> is so important. Here we can explain the common manipulation in Windows, adding it to Path variable ,although it differs a lot from Linux.  </p>
+<h3 id="Linux-Environment-Configuration"><a href="#Linux-Environment-Configuration" class="headerlink" title="Linux Environment Configuration"></a>Linux Environment Configuration</h3><p>When we enter into the Bash without doing anything, we get a lot of variables because of the existence of configuration file.</p>
+<p>Suppose we use <strong>login-shell</strong>, which means complete login process. The brief workflow is:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[&quot;/etc/profile&quot;]----&gt;B[&quot;~/.bash_profile&quot;]----&gt;C[&quot;start bash&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>In file <code>/etc/profile</code>, variables will be read and most configuration will be set. What’s more, in this step some relevant file will also be executed, mainly system configuration files.</p>
+<p>In <code>~/.bash_profile</code>, user defined configuration will be read and executed. </p>
+<p>Here a command called <code>source</code>. It is also one way of executing commands and <code>.</code> can replace it. </p>
+<h3 id="Wildcard-in-Bash"><a href="#Wildcard-in-Bash" class="headerlink" title="Wildcard in Bash"></a>Wildcard in Bash</h3><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*</code></td>
+<td>mean the same as <code>.*</code> in regular expression</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>mean the same as <code>.</code> in regular expression</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td><code>[0-9]</code> means all numbers</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>possible character</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>filter the content</td>
+</tr>
+</tbody></table>
+<p>It is different from regular expression so be careful.</p>
+<h3 id="Data-Redirection"><a href="#Data-Redirection" class="headerlink" title="Data Redirection"></a>Data Redirection</h3><p>There are three types of IO forms:</p>
+<p><code>stdin</code>: using <code>&lt;</code> or <code>&lt;&lt;</code>, the latter one is apending while the former one is entirely replacing </p>
+<p><code>stdout</code>: using <code>&gt;</code> or <code>&gt;&gt;</code>, the latter one is apending while the former one is entirely replacing </p>
+<p><code>stderr</code>: using <code>2&gt;</code> or <code>2&gt;&gt;</code>, the latter one is apending while the former one is entirely replacing</p>
+<p>For example, the following command:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find /home-name .bashrc 2&gt; errorLog &gt;result </span><br><span class="line"><span class="comment"># If failure happen then the information will be sent to errorLog file and the result will be sent to result file in case that no failure.#</span></span><br></pre></td></tr></table></figure>
+
+<p>Linux provides us a rubish bin called <code>/dev/null</code> so let <code>stderr</code> be redirected to it to discard the error information.</p>
+<p>Besides, add <code>EOF</code> when using stdin and encountering the end of our input.</p>
+<h3 id="Multi-command-Input"><a href="#Multi-command-Input" class="headerlink" title="Multi-command Input"></a>Multi-command Input</h3><p>The most common way is sequenced command execution. Just use <code>;</code> to connect two commands, which means the two commands are executed one by one.</p>
+<p>There is a way like conditional sentence to execute the command.</p>
+<p>In Linux, formula <code>$?</code> return 0 if the execution is successful. </p>
+<p>So we can use <code>||</code> and <code>&amp;&amp;</code> to combine two commands like:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmd1&amp;&amp;cmd2</span><br><span class="line">cmd1||cmd2</span><br></pre></td></tr></table></figure>
+
+<p>I will explain the meaning of the above one by a table:</p>
+<table>
+<thead>
+<tr>
+<th>Sentence</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cmd1&amp;&amp;cmd2</code></td>
+<td>when <code>cmd1</code> fail then <code>cmd2</code> will not be executed</td>
+</tr>
+<tr>
+<td><code>cmd1&amp;&amp;cmd2</code></td>
+<td>when <code>cmd1</code> succeed then <code>cmd2</code> will be executed</td>
+</tr>
+<tr>
+<td>&#96;cmd1</td>
+<td></td>
+</tr>
+<tr>
+<td>&#96;cmd1</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>For example, we want to express this meaning: if one file does not exist, then create it and add some files into it:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> /tmp/abc || <span class="built_in">mkdir</span> /tmp/abc &amp;&amp; <span class="built_in">touch</span> /tmp/abc/head</span><br></pre></td></tr></table></figure>
+
+<p>Just in one line can we express sophiscated semantic meaning. It is, however, more clear and readable that the programmer use conditional sentences. </p>
+<h2 id="4-Pipe"><a href="#4-Pipe" class="headerlink" title="4. Pipe"></a>4. Pipe</h2><p>Sequence workflow which is common in our job may require us to do this thing: execute one command and let its output be the other command’s input. </p>
+<p>Let’s consider this condition: We execute a calculation program and get the result, and then it need to be the input of other statistic program to describe the data set. It is similar to a pipeline in factory and Linux provide us the way to realize this. </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sci_calculus|statistic_program</span><br></pre></td></tr></table></figure>
+
+<p>Now we can start to discuss some common commands used in pipe mechanism. </p>
+<h3 id="Selection-Command-cut"><a href="#Selection-Command-cut" class="headerlink" title="Selection Command: cut"></a>Selection Command: cut</h3><p>Here <code>cut</code> and <code>grep</code> are our topic. These two commands are used in selecting variable data from the massive data pile. </p>
+<p><code>cut</code> is similar to <code>split</code> in <code>python</code>. The mode is:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cut</span> -d &lt;sep&gt; -f &lt;idx&gt;</span><br></pre></td></tr></table></figure>
+
+<p>It is useful for us to use them in processing some regular text:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$PATH</span> | <span class="built_in">cut</span> -d <span class="string">&#x27;:&#x27;</span> -f 5</span><br></pre></td></tr></table></figure>
+
+<p>Here we find the 5th element in split list. </p>
+<p>And we can use <code>,</code> in <code>&lt;idx&gt;</code> to select more element:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$PATH</span> | <span class="built_in">cut</span> -d <span class="string">&#x27;:&#x27;</span> -f 3,5</span><br></pre></td></tr></table></figure>
+
+<p>Another command <code>grep</code> we discuss later because it worths an individual chapter. </p>
+<h3 id="Advanced-Data-Process-Commands"><a href="#Advanced-Data-Process-Commands" class="headerlink" title="Advanced Data Process Commands"></a>Advanced Data Process Commands</h3><p>When we process the data, the manipulation may include:</p>
+<ul>
+<li>sort</li>
+<li>unique value</li>
+<li>count</li>
+</ul>
+<p>In Linux, <code>sort</code>, <code>uniq</code>, <code>wc</code> are to do these things respectively. </p>
+<p>There are many pipe commands in the book and we will talk about them later in particular application. </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/23/Shell/" data-id="cl156q27m000020vj68oh3diq" data-title="Shell" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell-Kernel-Linux-OS/" rel="tag">Shell; Kernel; Linux; OS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Branching-Point" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/20/Branching-Point/" class="article-date">
@@ -118,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/20/Branching-Point/" data-id="cl0z29bcm000098vj5kn47cz9" data-title="Branching Point" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/20/Branching-Point/" data-id="cl156nmxq0000icvj41y64fnj" data-title="Branching Point" class="article-share-link">Share</a>
       
       
       
@@ -177,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/14/Operator-Overload-in-C/" data-id="cl0uxzw3u0000fwvj7fhz5xum" data-title="Operator Overload in C++" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/14/Operator-Overload-in-C/" data-id="cl156nmxw0001icvj258eanro" data-title="Operator Overload in C++" class="article-share-link">Share</a>
       
       
       
@@ -213,7 +421,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Git-for-New-Beginners"><a href="#Git-for-New-Beginners" class="headerlink" title="Git for New Beginners"></a>Git for New Beginners</h1><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This tutorial will be updated for a long time, mainly for me, an EE student who does not really contact those practical tools.</p>
+        <p>[TOC]</p>
+<h1 id="Git-for-New-Beginners"><a href="#Git-for-New-Beginners" class="headerlink" title="Git for New Beginners"></a>Git for New Beginners</h1><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This tutorial will be updated for a long time, mainly for me, an EE student who does not really contact those practical tools.</p>
 <p>This tutorial consists of following points:</p>
 <ul>
 <li>VCS and Git Started: Here I will introduce the concept of version control systems ( VCSs ) in short. The key point is the introduction to Git, our main player. You can learn some fundamental concepts and a little simple properties.</li>
@@ -303,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/13/git/" data-id="cl0uxzw3y0001fwvj1gl71ka0" data-title="git" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/13/git/" data-id="cl156nmxz0004icvj7714e2so" data-title="git" class="article-share-link">Share</a>
       
       
       
@@ -356,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/10/hello-world/" data-id="cl0uxzw410003fwvjc3x952ib" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/10/hello-world/" data-id="cl156nmxy0003icvj5iif3247" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -381,7 +590,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Pointer-Overload/" rel="tag">C++;Pointer;Overload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" rel="tag">Complex Analyze; Branching Point; Multi-valued Functions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-Pointer-Overload/" rel="tag">C++;Pointer;Overload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" rel="tag">Complex Analyze; Branching Point; Multi-valued Functions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell-Kernel-Linux-OS/" rel="tag">Shell; Kernel; Linux; OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/version-control-git-distributed-system/" rel="tag">version control; git; distributed system</a></li></ul>
     </div>
   </div>
 
@@ -391,7 +600,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-Pointer-Overload/" style="font-size: 10px;">C++;Pointer;Overload</a> <a href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" style="font-size: 10px;">Complex Analyze; Branching Point; Multi-valued Functions</a> <a href="/tags/version-control-git-distributed-system/" style="font-size: 10px;">version control; git; distributed system</a>
+      <a href="/tags/C-Pointer-Overload/" style="font-size: 10px;">C++;Pointer;Overload</a> <a href="/tags/Complex-Analyze-Branching-Point-Multi-valued-Functions/" style="font-size: 10px;">Complex Analyze; Branching Point; Multi-valued Functions</a> <a href="/tags/Shell-Kernel-Linux-OS/" style="font-size: 10px;">Shell; Kernel; Linux; OS</a> <a href="/tags/version-control-git-distributed-system/" style="font-size: 10px;">version control; git; distributed system</a>
     </div>
   </div>
 
@@ -411,6 +620,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/03/23/Shell/">Shell</a>
+          </li>
         
           <li>
             <a href="/2022/03/20/Branching-Point/">Branching Point</a>
